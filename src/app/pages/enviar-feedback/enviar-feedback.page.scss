@@ -1,0 +1,23 @@
+.gray {
+    background-color: rgb(207, 193, 193);
+    border-radius: 5px;
+
+}
+.gray::placeholder{
+    color: aqua;
+}
+
+.botao{
+    margin-top: 10px;
+}
+.div-bt{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+placeholder{
+    color: aqua;
+    
+}

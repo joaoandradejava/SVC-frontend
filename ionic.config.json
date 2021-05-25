@@ -1,0 +1,7 @@
+{
+  "name": "TotalMed",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
