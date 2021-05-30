@@ -1,49 +1,44 @@
-import { FeedbackService } from './../../shared/services/feedback.service';
-import { ValidadorFormulario } from './../../shared/utils/validador-formulario';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/shared/services/toast.service';
-import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import { ValidadorFormulario } from 'src/app/shared/utils/validador-formulario';
 
 @Component({
-  selector: 'app-enviar-feedback',
-  templateUrl: './enviar-feedback.page.html',
-  styleUrls: ['./enviar-feedback.page.scss'],
+  selector: 'app-esqueceu-asenha',
+  templateUrl: './esqueceu-asenha.page.html',
+  styleUrls: ['./esqueceu-asenha.page.scss'],
 })
-export class EnviarFeedbackPage implements OnInit {
+export class EsqueceuASenhaPage implements OnInit {
   formGroup: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private feedbackService: FeedbackService,
-    private toastService: ToastService,
-    private autenticacaoService: AutenticacaoService
+    private usuarioService: UsuarioService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      titulo: [
+      email: [
         '',
         [
           Validators.required,
           Validators.minLength(0),
           Validators.maxLength(255),
+          Validators.email,
         ],
       ],
-      descricao: ['', [Validators.required]],
     });
   }
 
-  public enviarFeedback(): void {
+  public mudarSenha(): void {
     if (this.formGroup.valid) {
-      this.feedbackService
-        .enviarFeedback(
-          this.formGroup.value,
-          this.autenticacaoService.getUsuarioAutenticado().id
-        )
+      this.usuarioService
+        .esquecerSenha(this.formGroup.value)
         .subscribe((data) => {
           this.toastService.exibirMensagemDeSucesso(
-            'Feedback enviado com sucesso!',
+            'Uma nova senha foi enviada para o seu email!',
             5000
           );
           this.formGroup.reset();
@@ -61,5 +56,9 @@ export class EnviarFeedbackPage implements OnInit {
     max: number
   ): string {
     return ValidadorFormulario.getMensagemCampoComTamanho(label, min, max);
+  }
+
+  public campoInvalido(label: string): string {
+    return ValidadorFormulario.campoInvalido(label);
   }
 }

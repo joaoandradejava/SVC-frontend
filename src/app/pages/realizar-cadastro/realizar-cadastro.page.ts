@@ -1,22 +1,19 @@
+import { ValidadorFormulario } from './../../shared/utils/validador-formulario';
 import { UsuarioService } from './../../shared/services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
-import { ValidadorFormulario } from 'src/app/shared/utils/validador-formulario';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
-  selector: 'app-atualizar-cadastro',
-  templateUrl: './atualizar-cadastro.page.html',
-  styleUrls: ['./atualizar-cadastro.page.scss'],
+  selector: 'app-realizar-cadastro',
+  templateUrl: './realizar-cadastro.page.html',
+  styleUrls: ['./realizar-cadastro.page.scss'],
 })
-export class AtualizarCadastroPage implements OnInit {
+export class RealizarCadastroPage implements OnInit {
   formGroup: FormGroup;
-  cpf: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private autenticacaoService: AutenticacaoService,
     private usuarioService: UsuarioService,
     private toastService: ToastService
   ) {}
@@ -31,6 +28,14 @@ export class AtualizarCadastroPage implements OnInit {
           Validators.maxLength(255),
         ],
       ],
+      cpf: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(0),
+          Validators.maxLength(11),
+        ],
+      ],
       email: [
         '',
         [
@@ -38,6 +43,14 @@ export class AtualizarCadastroPage implements OnInit {
           Validators.minLength(0),
           Validators.maxLength(255),
           Validators.email,
+        ],
+      ],
+      senha: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(0),
+          Validators.maxLength(255),
         ],
       ],
       telefone: [
@@ -49,35 +62,22 @@ export class AtualizarCadastroPage implements OnInit {
         ],
       ],
     });
+  }
 
-    this.usuarioService
-      .buscarPorId(this.autenticacaoService.getUsuarioAutenticado().id)
-      .subscribe((data) => {
-        this.formGroup.get('nome').setValue(data.nome);
-        this.formGroup.get('email').setValue(data.email);
-        this.formGroup.get('telefone').setValue(data.telefone);
-        this.cpf = data.cpf;
+  public realizarCadastro(): void {
+    if (this.formGroup.valid) {
+      this.usuarioService.cadastrar(this.formGroup.value).subscribe((data) => {
+        this.formGroup.reset();
+        this.toastService.exibirMensagemDeSucesso(
+          'Seu cadastro foi realizado com sucesso!',
+          5000
+        );
       });
+    }
   }
 
   public getMensagemCampoObrigatorio(label: string): string {
     return ValidadorFormulario.getMensagemCampoObrigatorio(label);
-  }
-
-  public atualizar(): void {
-    if (this.formGroup.valid) {
-      this.usuarioService
-        .atualizar(
-          this.autenticacaoService.getUsuarioAutenticado().id,
-          this.formGroup.value
-        )
-        .subscribe((data) => {
-          this.toastService.exibirMensagemDeSucesso(
-            'Dados atualizados com sucesso!',
-            5000
-          );
-        });
-    }
   }
 
   public getMensagemCampoComTamanho(

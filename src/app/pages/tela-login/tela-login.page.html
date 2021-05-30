@@ -16,7 +16,8 @@
             <ion-item>
               <ion-icon name="people" slot="end"></ion-icon>
               <ion-label>CPF:</ion-label>
-              <ion-input formControlName="cpf" id="cpf"></ion-input>
+              <ion-input   mask="(000) 000-0000"
+              formControlName="cpf" id="cpf"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -30,7 +31,12 @@
             </ion-button>
 
           </ion-card>
-
+          <div>
+            <span class="texto-centralizado">Tem conta? <a [routerLink]="['/cadastro']" routerLinkActive="router-link-active" >Não</a></span>
+          </div>
+          <div>
+            <span class="texto-centralizado">Esqueceu a Senha? <a [routerLink]="['/esqueceu-senha']" routerLinkActive="router-link-active"  class="link">Sim</a></span>
+          </div>
         </ion-col>
         <ion-col size="1">
         </ion-col>

@@ -8,12 +8,15 @@ import {
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../services/autenticacao.service';
 import { UsuarioAutenticado } from '../models/usuario-autenticado';
+import 'rxjs/operators'
+import { finalize } from 'rxjs/operators';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenJwtInterceptor implements HttpInterceptor {
-  constructor(private autenticacaoService: AutenticacaoService) {}
+  constructor(private autenticacaoService: AutenticacaoService, private loadingService: LoadingService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -26,9 +29,11 @@ export class TokenJwtInterceptor implements HttpInterceptor {
 
       const request = req.clone({ setHeaders: { Authorization: tokenJwt } });
 
-      return next.handle(req);
+      return next.handle(request);
     }
 
-    return next.handle(req);
+    return next.handle(req).pipe(finalize(() => {
+      this.loadingService.terminarLoading()
+    }));
   }
 }

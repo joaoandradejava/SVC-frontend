@@ -17,8 +17,24 @@ export class ToastService {
         {
           text: 'Fechar',
           role: 'cancel',
-          handler: () => {
-          },
+          handler: () => {},
+        },
+      ],
+    });
+    await toast.present();
+  }
+
+  public async exibirMensagemDeSucesso(mensagem: string, duracao: number) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: duracao,
+      color: 'success',
+      position: 'top',
+      buttons: [
+        {
+          text: 'Fechar',
+          role: 'cancel',
+          handler: () => {},
         },
       ],
     });

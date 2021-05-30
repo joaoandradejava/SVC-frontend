@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { UsuarioAutenticado } from 'src/app/shared/models/usuario-autenticado';
 import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
 import { LoginService } from 'src/app/shared/services/login.service';
@@ -19,8 +19,8 @@ export class TelaLoginPage implements OnInit {
     private loginService: LoginService,
     private autenticacaoService: AutenticacaoService,
     private router: Router,
-  ) {
-  }
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
@@ -58,4 +58,6 @@ export class TelaLoginPage implements OnInit {
         });
     }
   }
+
+
 }

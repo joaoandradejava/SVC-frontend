@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { AtualizarCadastroPageRoutingModule } from './atualizar-cadastro-routing.module';
-import { AtualizarCadastroPage } from './atualizar-cadastro.page';
 
+import { IonicModule } from '@ionic/angular';
+
+import { RealizarCadastroPageRoutingModule } from './realizar-cadastro-routing.module';
+
+import { RealizarCadastroPage } from './realizar-cadastro.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AtualizarCadastroPageRoutingModule,
+    RealizarCadastroPageRoutingModule,
     ReactiveFormsModule,
-
   ],
-  declarations: [AtualizarCadastroPage]
+  declarations: [RealizarCadastroPage]
 })
-export class AtualizarCadastroPageModule {}
+export class RealizarCadastroPageModule {}

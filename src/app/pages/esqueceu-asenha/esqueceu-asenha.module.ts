@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EnviarFeedbackPageRoutingModule } from './enviar-feedback-routing.module';
+import { EsqueceuASenhaPageRoutingModule } from './esqueceu-asenha-routing.module';
 
-import { EnviarFeedbackPage } from './enviar-feedback.page';
+import { EsqueceuASenhaPage } from './esqueceu-asenha.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnviarFeedbackPageRoutingModule,
+    EsqueceuASenhaPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [EnviarFeedbackPage]
+  declarations: [EsqueceuASenhaPage]
 })
-export class EnviarFeedbackPageModule {}
+export class EsqueceuASenhaPageModule {}

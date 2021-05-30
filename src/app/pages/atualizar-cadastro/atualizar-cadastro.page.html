@@ -5,5 +5,28 @@
 </ion-header>
 
 <ion-content>
+  <h1 class="texto-centralizado">Seus dados</h1>
+  <form [formGroup]="formGroup">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cpf</ion-label>
+      <ion-input type="text" [value]="cpf" readonly value="121"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input type="text" mask="(000) 000-0000" formControlName="telefone"></ion-input>
+    </ion-item>
+    <div class="botao">
+      <ion-button color="primary" (click)="atualizar()" class="button" [disabled]="formGroup.invalid">Confirmar
+      </ion-button>
+    </div>
+  </form>
 
 </ion-content>
