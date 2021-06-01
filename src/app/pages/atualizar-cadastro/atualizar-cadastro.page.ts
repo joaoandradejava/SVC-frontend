@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
 import { ValidadorFormulario } from 'src/app/shared/utils/validador-formulario';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { BrMaskDirective, BrMaskModel } from 'br-mask';
+import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
+import { UsuarioUpdateInput } from 'src/app/shared/models/usuario-update';
 
 @Component({
   selector: 'app-atualizar-cadastro',
@@ -44,8 +47,8 @@ export class AtualizarCadastroPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(11),
+          Validators.minLength(16),
+          Validators.maxLength(16),
         ],
       ],
     });
@@ -64,12 +67,27 @@ export class AtualizarCadastroPage implements OnInit {
     return ValidadorFormulario.getMensagemCampoObrigatorio(label);
   }
 
+  public valorResetadoTelefone(): string {
+    let valor: string = this.formGroup.get('telefone').value;
+
+    valor = valor.replace('(', '');
+    valor = valor.replace(')', '');
+    valor = valor.replace(' ', '');
+    valor = valor.replace(' ', '');
+
+    valor = valor.replace('-', '');
+
+    return valor;
+  }
+
   public atualizar(): void {
     if (this.formGroup.valid) {
+      let usuarioUpdateInput: UsuarioUpdateInput = this.formGroup.value;
+      usuarioUpdateInput.telefone = this.valorResetadoTelefone();
       this.usuarioService
         .atualizar(
           this.autenticacaoService.getUsuarioAutenticado().id,
-          this.formGroup.value
+          usuarioUpdateInput
         )
         .subscribe((data) => {
           this.toastService.exibirMensagemDeSucesso(

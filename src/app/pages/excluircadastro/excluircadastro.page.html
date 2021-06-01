@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Excluir cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="excluir">
+    <div>
+      <h1 class="texto-centralizado">Excluir conta</h1>
+      <p>É importante resaltar que logo apos a exclusão da sua conta não tem como recupera-la novamente, todos os dados
+        serão deletados automaticamente</p>
+    </div>
+    <div class="botao">
+      <ion-button color="danger" (click)="deletarConta()">Excluir conta</ion-button>
+    </div>
+  </div>
 </ion-content>

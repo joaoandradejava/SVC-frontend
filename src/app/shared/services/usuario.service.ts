@@ -1,3 +1,4 @@
+import { AgendamentoInput } from './../models/agendamento-input';
 import { EsqueceuASenhaInput } from './../models/esqueceu-senha-input';
 import { Backend } from './../utils/backend';
 import { UsuarioUpdateInput } from './../models/usuario-update';
@@ -20,6 +21,10 @@ export class UsuarioService {
     return this.http.post(Backend.getBaseUsuario, usuarioInput);
   }
 
+  public deletarPorId(id: number): Observable<any> {
+    return this.http.delete(Backend.getBaseUsuario + `/${id}`);
+  }
+
   public atualizar(
     id: number,
     usuarioUpdateInput: UsuarioUpdateInput
@@ -27,10 +32,22 @@ export class UsuarioService {
     return this.http.put(Backend.getBaseUsuario + `/${id}`, usuarioUpdateInput);
   }
 
-  public esquecerSenha(esqueceuASenhaInput: EsqueceuASenhaInput): Observable<any> {
+  public esquecerSenha(
+    esqueceuASenhaInput: EsqueceuASenhaInput
+  ): Observable<any> {
     return this.http.put(
       Backend.getBaseUsuario + '/esqueci-senha',
       esqueceuASenhaInput
+    );
+  }
+
+  public fazerAgendamento(
+    agendamentoInput: AgendamentoInput,
+    usuarioId: number
+  ): Observable<any> {
+    return this.http.post(
+      Backend.getBaseUsuario + `/${usuarioId}/agendamentos`,
+      agendamentoInput
     );
   }
 }

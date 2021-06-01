@@ -5,12 +5,15 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>realizarCadastro</ion-title>
+    <ion-title>Cadastro do Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="cadastro">
+    <div>
+      <h1 class="texto-centralizado">Preencha os campos do formulario</h1>
+    </div>
     <form [formGroup]="formGroup">
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
@@ -25,13 +28,13 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Cpf</ion-label>
-        <ion-input type="text" formControlName="cpf" placeholder="000.000.000-00" name="title"></ion-input>
+        <ion-input type="text"  [brmasker]="{mask:'000.000.000-00', len:14, userCaracters: true, type: 'num'}" formControlName="cpf" placeholder="000.000.000-00" name="title"></ion-input>
         <span class="error-message" *ngIf="formGroup.get('cpf').getError('required') && formGroup.get('cpf').touched">
           <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Cpf')}}
         </span>
         <span class="error-message"
           *ngIf="(formGroup.get('cpf').getError('minlength') || formGroup.get('cpf').getError('maxlength')) && formGroup.get('cpf').touched">
-          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoComTamanho('Cpf', 0, 11)}}
+          <ion-icon name="information-circle-outline"></ion-icon> {{campoInvalido('Cpf')}}
         </span>
       </ion-item>
       <ion-item>
@@ -63,14 +66,14 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Telefone</ion-label>
-        <ion-input type="text" formControlName="telefone" placeholder="(00) 0 0000-0000" name="title"></ion-input>
+        <ion-input type="text"  [brmasker]=" {mask: '(00) 0 0000-0000 ', type: 'num', len: 16} " formControlName="telefone" placeholder="(00) 0 0000-0000" name="title"></ion-input>
         <span class="error-message"
           *ngIf="formGroup.get('telefone').getError('required') && formGroup.get('telefone').touched">
           <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Telefone')}}
         </span>
         <span class="error-message"
           *ngIf="(formGroup.get('telefone').getError('minlength') || formGroup.get('telefone').getError('maxlength')) && formGroup.get('telefone').touched">
-          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoComTamanho('Telefone', 0, 11)}}
+          <ion-icon name="information-circle-outline"></ion-icon> {{campoInvalido('Telefone')}}
         </span>
       </ion-item>
 

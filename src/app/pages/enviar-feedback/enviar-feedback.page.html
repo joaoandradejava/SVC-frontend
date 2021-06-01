@@ -23,28 +23,11 @@
 
             <ion-card-content>
               <ion-item>
-                <ion-label position="floating">Titulo do feedback:</ion-label>
-                <ion-input formControlName="titulo"></ion-input>
-
-                <span class="error-message"
-                  *ngIf="formGroup.get('titulo').getError('required') && formGroup.get('titulo').touched">
-                  <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Titulo')}}
-                </span>
-
-                <span class="error-message"
-                  *ngIf="(formGroup.get('titulo').getError('minlenght') ||formGroup.get('titulo').getError('maxlenght') )  && formGroup.get('titulo').touched">
-                  <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoComTamanho('Titulo',
-                  0 , 255)}}
-                </span>
-              </ion-item>
-
-              <ion-item>
-
                 <ion-label position="floating">Comentario:</ion-label>
-                <ion-textarea formControlName="descricao" placeholder="deixe seu comentario"></ion-textarea>
+                <ion-textarea formControlName="comentario" placeholder="deixe seu comentario"></ion-textarea>
                 <span class="error-message"
-                  *ngIf="formGroup.get('descricao').getError('required') && formGroup.get('descricao').touched">
-                  <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Descrição')}}
+                  *ngIf="formGroup.get('comentario').getError('required') && formGroup.get('comentario').touched">
+                  <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Comentario')}}
                 </span>
               </ion-item>
 

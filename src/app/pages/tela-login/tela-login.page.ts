@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController, ModalController } from '@ionic/angular';
+import { LoginInput } from 'src/app/shared/models/login-input';
 import { UsuarioAutenticado } from 'src/app/shared/models/usuario-autenticado';
 import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
 import { LoginService } from 'src/app/shared/services/login.service';
@@ -28,8 +29,8 @@ export class TelaLoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(11),
+          Validators.minLength(14),
+          Validators.maxLength(14),
         ],
       ],
       senha: [
@@ -45,6 +46,12 @@ export class TelaLoginPage implements OnInit {
 
   logar() {
     if (this.formGroup.valid) {
+      let loginInput: LoginInput = this.formGroup.value
+      loginInput.cpf = loginInput.cpf.replace('.', '')
+      loginInput.cpf = loginInput.cpf.replace('.', '')
+      loginInput.cpf = loginInput.cpf.replace('.', '')
+      loginInput.cpf = loginInput.cpf.replace('-', '')
+
       this.loginService
         .realizarLogin(this.formGroup.value)
         .subscribe((data) => {

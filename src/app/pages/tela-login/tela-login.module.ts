@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TelaLoginPageRoutingModule } from './tela-login-routing.module';
 import { TelaLoginPage } from './tela-login.page';
+import { BrMaskerModule } from 'br-mask';
 
 
 @NgModule({
@@ -13,6 +14,8 @@ import { TelaLoginPage } from './tela-login.page';
     IonicModule,
     TelaLoginPageRoutingModule,
     ReactiveFormsModule,
+    BrMaskerModule
+
   ],
   declarations: [TelaLoginPage]
 })

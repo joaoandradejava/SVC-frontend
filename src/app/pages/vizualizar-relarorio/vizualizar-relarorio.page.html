@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Vizualizar Relarorio</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <div class="visualizar">
+    <div>
+      <ion-button (click)="baixar()" color="primary" expand="full">Baixar relatorio</ion-button>
+    </div>
+    <div class="relatorio">
+      <iframe src="" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+  </div>
 
 </ion-content>

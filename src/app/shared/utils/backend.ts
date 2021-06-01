@@ -13,4 +13,12 @@ export class Backend {
   public static get getBaseFeedback(): string {
     return this.getBaseUrl + 'feedbacks'
   }
+
+  public static get getBaseEstatistica(): string {
+    return this.getBaseUrl + 'estatisticas'
+  }
+
+  public static get getBaseVacina(): string {
+    return this.getBaseUrl + 'vacinas'
+  }
 }

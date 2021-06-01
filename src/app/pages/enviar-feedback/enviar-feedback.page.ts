@@ -22,15 +22,7 @@ export class EnviarFeedbackPage implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      titulo: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(255),
-        ],
-      ],
-      descricao: ['', [Validators.required]],
+      comentario: ['', [Validators.required]],
     });
   }
 

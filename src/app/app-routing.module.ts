@@ -32,26 +32,10 @@ const routes: Routes = [
     canActivate: [AutenticadoGuard],
   },
   {
-    path: 'vizualizar-historico',
-    loadChildren: () =>
-      import('./pages/vizualizar-historico/vizualizar-historico.module').then(
-        (m) => m.VizualizarHistoricoPageModule
-      ),
-    canActivate: [AutenticadoGuard],
-  },
-  {
     path: 'agendar-vacina',
     loadChildren: () =>
       import('./pages/agendar-vacina/agendar-vacina.module').then(
         (m) => m.AgendarVacinaPageModule
-      ),
-    canActivate: [AutenticadoGuard],
-  },
-  {
-    path: 'gerar-relatorio',
-    loadChildren: () =>
-      import('./pages/gerar-relatorio/gerar-relatorio.module').then(
-        (m) => m.GerarRelatorioPageModule
       ),
     canActivate: [AutenticadoGuard],
   },

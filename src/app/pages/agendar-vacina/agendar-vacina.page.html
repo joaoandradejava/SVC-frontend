@@ -9,5 +9,28 @@
 
 <ion-content>
 
+  <div>
+    <h1 class="texto-centralizado">Faça seu agendamento</h1>
+    <form action="" [formGroup]="formGroup">
+      <ion-item>
+        <ion-label position="floating">Data do agendamento</ion-label>
+        <ion-datetime formControlName="dataAgendamento" cancelText='cancelar' doneText='Fazer o Agendamento'
+          display-timezone="utc" min="2021" max="2022" pickerFormat="DD/MM/YYYY  HH:mm"
+          placeholder="Escolha a data e a hora do agendamento" displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
+
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Vacinas</ion-label>
+        <ion-select placeholder="Escolha a vacina a ser tomada" interface="popover" formControlName="tipoVacina">
+          <ion-select-option [value]="vacina.nome" *ngFor="let vacina of vacinas | async">{{vacina.nome}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="botao">
+        <ion-button color="primary" (click)="fazerAgendamento()" [disabled]="formGroup.invalid">Fazer Agendamento
+        </ion-button>
+      </div>
+    </form>
+  </div>
 
 </ion-content>

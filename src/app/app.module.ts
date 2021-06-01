@@ -23,7 +23,7 @@ import { ExceptionsInterceptor } from './shared/interceptor/exceptions-interpcet
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenJwtInterceptor, multi: true },
-    //{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ExceptionsInterceptor,

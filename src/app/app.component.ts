@@ -16,16 +16,10 @@ export class AppComponent implements OnInit {
       url: 'enviar-feedback',
       icon: 'document-attach',
     },
-    { title: 'Gerar relatório', url: 'gerar-relatorio', icon: 'receipt' },
     {
       title: 'Vizualizar relatório',
       url: 'vizualizar-relarorio',
       icon: 'document',
-    },
-    {
-      title: 'Vizualizar historico',
-      url: 'vizualizar-historico',
-      icon: 'library',
     },
     { title: 'Excluir cadastro', url: 'excluircadastro', icon: 'trash' },
   ];

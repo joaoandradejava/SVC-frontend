@@ -3,6 +3,7 @@ import { UsuarioService } from './../../shared/services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { UsuarioInput } from 'src/app/shared/models/usuario-input';
 
 @Component({
   selector: 'app-realizar-cadastro',
@@ -32,8 +33,8 @@ export class RealizarCadastroPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(11),
+          Validators.minLength(14),
+          Validators.maxLength(14),
         ],
       ],
       email: [
@@ -57,15 +58,42 @@ export class RealizarCadastroPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(11),
+          Validators.minLength(16),
+          Validators.maxLength(16),
         ],
       ],
     });
   }
 
+  public valorResetadoTelefone(): string {
+    let valor: string = this.formGroup.get('telefone').value;
+
+    valor = valor.replace('(', '');
+    valor = valor.replace(')', '');
+    valor = valor.replace(' ', '');
+    valor = valor.replace(' ', '');
+
+    valor = valor.replace('-', '');
+
+    return valor;
+  }
+
+  public valorResetadoCpf(): string {
+    let valor: string = this.formGroup.get('cpf').value;
+
+    valor = valor.replace('.', '');
+    valor = valor.replace('.', '');
+    valor = valor.replace('.', '');
+    valor = valor.replace('-', '');
+
+    return valor;
+  }
+
   public realizarCadastro(): void {
     if (this.formGroup.valid) {
+      let usuarioInput: UsuarioInput = this.formGroup.value;
+      usuarioInput.telefone = this.valorResetadoTelefone();
+      usuarioInput.cpf = this.valorResetadoCpf();
       this.usuarioService.cadastrar(this.formGroup.value).subscribe((data) => {
         this.formGroup.reset();
         this.toastService.exibirMensagemDeSucesso(
